@@ -11,8 +11,7 @@
 
 // var upgradeDimListOfCostsStr = ['$2000', '$NaN', '$'+5e6, '$' + 10**1024];
 // var upgradeDimListOfCostsInt = [2000, 0, 5e6, 10**1024];
-
-var player = {
+let player = {
 	'money': 0,
 	'dim1': 0,
 	'dim2': 1,
@@ -28,7 +27,7 @@ function setup() {
 	// document.getElementById('moneyDisplay').innerHTML = 0;
 	// document.getElementById('dimension1Display').innerHTML = 0;
 	// createCanvas(0, 0)
-	noCanvas();
+	// noCanvas();
 	// createP('lol p')
 }
 
@@ -127,15 +126,16 @@ window.setInterval(function(){
 // };
 
 function load(){
-	var savegame = JSON.parse(localStorage.getItem("player"));
-	// console.log(savegame)
-	player.money = savegame.money;
-	player.totalMoney = savegame.totalMoney;
-	player.dim1 = savegame.dim1;
-	player.dim2 = savegame.dim2;
-	player.dim3 = savegame.dim3;
-	player.numberOfDims = savegame.numberOfDims;
-
+	try {
+		let savegame = JSON.parse(localStorage.getItem("player"));
+		// console.log(savegame)
+		player.money = savegame.money;
+		player.totalMoney = savegame.totalMoney;
+		player.dim1 = savegame.dim1;
+		player.dim2 = savegame.dim2;
+		player.dim3 = savegame.dim3;
+		player.numberOfDims = savegame.numberOfDims;
+	} catch(err){};
 	showMoney();
 	document.getElementById('dim1Display').innerHTML = player.dim1;
 	document.getElementById('dim2Display').innerHTML = player.dim2;
@@ -310,11 +310,11 @@ function clickedDim3() {
 }
 
 function changeTab(evt, tab) {
-	var tabcontent = document.getElementsByClassName('tabcontent');
+	let tabcontent = document.getElementsByClassName('tabcontent');
 	for(let i = 0; i < tabcontent.length; i++) {
 		tabcontent[i].style.display = 'none';
 	}
 
-	document.getElementById(tab).style.display = 'block';
-	// evt.currentTarget.className += " active";
+   document.getElementById(tab).style.display = 'block';    //
+	evt.currentTarget.className += " active"; 
 }
