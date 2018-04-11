@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+	<head>
+		<link rel="stylesheet" type="text/css" href="interface.css"/>
+		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js"></script> -->
+		<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/> -->
+		<title>Incremental game</title>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li onclick="changeTab('event', 'dims');" class="tablinks" id="dimsTab">Dims</li>
+				<li onclick="changeTab('event', 'options');" class="tablinks" id="optionsTab">Options</li>
+				<li onclick="changeTab('event', 'stats');" class="tablinks" id="statsTab">Stats</li>
+				<li onclick="changeTab('event', 'achievements')" class="tablinks" id="achievementsTab">Achieve</li>
+				<li onclick="changeTab('event', 'tut')" class="tablinks" id="tutTab">Tut</li>
+				<li onclick="changeTab('event', 'strats')" class="tablinks" id="stratsTab">Strats</li>
+				<li onclick="changeTab('event', 'credits')" class="tablinks" id="creditsTab">Credits</li>
+			</ul>
+		</nav>
+
+
+		<div id="dims" class="tabcontent">
+			<div id="moneyDisplayDiv">
+				<span id="moneyDisplay"></span>
+			</div>
+			<!-- <div><p></p></div> -->
+			<!-- <button onClick="cookieClick(1)">Click me!</button> -->
+			<div class="row">
+				<div class="column">
+					<div id="dim1DisplayDiv" class="make25OfViewPort">
+						<p id="dim1DisplayParagraph">You have <span id="dim1Display"></span> 1st dimensions</p>
+					</div>
+					<div id="dim2DisplayDiv" class="make25OfViewPort">
+						<p id="dim2DisplayParagraph">You have <span id="dim2Display"></span> 2nd dimenions</p>
+					</div>
+					<div id="dim3DisplayDiv" class="make25OfViewPort">
+						<p id="dim3DisplayParagraph">You have <span id="dim3Display"></span> 3rd dimensions</p>
+					</div>
+				</div>
+				<div class="column">
+					<div class="allDimDiv make40OfViewPort">
+						<div id="dim1Div">
+							<p id="dim1" onclick="clickedDim1()">Click for 1st dimension!</p>
+						</div>
+						<div id="dim2Div">
+							<p id="dim2" onclick="clickedDim2()">Click for 2nd dimension!</p>
+						</div>
+						<div id="dim3Div">
+							<p id="dim3" onclick="clickedDim3()">Click for 3rd dimension!</p>
+						</div>
+					</div>
+				</div>
+				<div class="column"><p></p></div>
+			</div>
+			<!-- <div id="ascensionDiv" class="prestigeDiv"> -->
+				<!-- <p class="pestigeBuyer" id="ascension" onclick="tryToAscend(1)">You can ascend when you get <span id="ascensionCost"></span>. You get a new dimension on ascension!</p> -->
+			<!-- </div> -->
+			<br/>
+			<!-- <p>Cursors: <span id="cursors">0</span><br/>Cost: <span id="cursorCost">10</span><br/></p> -->
+			<!-- <button onClick="buyCursor()">Click for cursor.</button> -->
+			<button onclick="wipeSave()">Reset save</button>
+			<button onclick="showSave()">Show save</button>
+			<p id='showSaveBtn'></p>
+		</div>
+
+		<div id="options" class="tabcontent">
+			<form action="notationUpdate()">
+				<input type="radio" name="notation" value="Sci-!im">Complete Scientific
+				<input type="radio" name="notation" value="Sci">Scientific
+				<input type="radio" name="notation" value="Standard">Standard - COMING SOON
+				<input type="submit" name="Submit">	
+			</form>
+		</div>
+
+		<div id="stats" class="tabcontent">
+			<p>COMING SOON</p>
+		</div>
+
+		<div id="achievements" class="tabcontent">
+			<p>COMING SOON</p>
+		</div>
+
+		<div id="tut" class="tabcontent">
+			<p>COMING SOON</p>
+		</div>
+
+		<div id="strats" class="tabcontent">
+			<p>COMING SOON</p>
+		</div>
+
+		<div id="credits" class="tabcontent">
+			<h1 style="margin-top: 3px;">CREDITS</h1>
+			<p>I would like to thank everyone who helped me make [insert game name] or have inspired me.
+				<ul>
+					<li>First off, I would like to thank <a href="https://www.gethopscotch.com/">Hopscotch</a> for teaching me that coding exists and taut me basic fundamentals in coding</li>
+				</ul>
+			</p>
+		</div>
+
+		<script type="text/javascript" src="p5.js"></script>
+		<script type="text/javascript" src="p5.dom.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
