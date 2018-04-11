@@ -1,0 +1,126 @@
+html{
+	/*display: block;*/
+}
+
+body {
+	background-color: #d8f8ff;
+	color: magenta;
+	font-size: 17px;
+}	
+
+.make40OfViewPort{
+  width: 40vw;
+}
+
+.allDimDiv{
+	/*text-align: center;*/
+	/*overflow: hidden;*/
+	/*white-space: nowrap;*/
+	/*text-overflow: ellipsis;*/
+}
+
+#dim1DisplayDiv, #dim2DisplayDiv, #dim3DisplayDiv{
+	background-color: lightblue;
+	border-radius: 5px;
+	width: 80%;
+	text-align: center;
+}
+
+nav li {
+  display: block;	
+  background-color: #8BEAFF;
+  border-radius: 5px;
+  width: 140%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.make25OfViewPort{
+ 	width: 30vw; 
+}
+
+#dim1Div, #dim2Div, #dim3Div{ /* Only specifies where the is text;
+it is not spescified on unused whitespace in margins or something*/
+	/*overflow: hidden;*/
+	/*white-space: nowrap;*/
+	background-color: #bde8ff;
+	width: 50%;
+	border-radius: 5px;
+	text-align: center;
+	/*text-align: center;*/
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+.dim1{
+	/*width: 25%;*/
+}
+
+.row{
+	display: flex;
+}
+
+.column{
+	flex: 25%;
+}
+
+#showSaveBtn{
+	font-size: 10px;
+}
+
+.prestigeDiv{
+	background-color: #7df9ff;
+	border-radius: 5px;
+	width: 49.4vw;
+	text-align: center;
+	/*display: inline-block;*/
+}
+
+#moneyDisplay{
+	/*margin-left: 23%;*/
+	font-size: 125%;
+	font-family: monospace;
+}
+
+#moneyDisplayDiv{
+	width: 50vw;
+}
+
+.dim1Div{
+	visibility: visible;
+}
+
+/*nav {
+	float: right;
+	display: table-cell !important; 
+}
+
+nav li:before {
+  content: "|";  Insert content that looks like bullets 
+  padding-right: 8px;
+  color: blue;  Or a color you prefer 
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav li {
+	float: right;
+}*/
+
+nav ul {
+	float: right;
+	list-style-type: none;
+  margin: 0;
+  margin-right: 30px;
+  padding: 0;
+  width: 60px;
+}
+
+button {
+	font-family: cursive;
+	/*background-color: #66eeff;*/
+	color: magenta;
+}
