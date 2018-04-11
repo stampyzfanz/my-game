@@ -23,6 +23,11 @@ let player = {
 	'totalAscensions': 0
 };
 
+let dom = {
+	'dim2DisplayPara': document.getElementById('dim2DisplayPara').innerHTML,
+	'lol catz': 'evil'
+}
+
 function setup() {
 	// document.getElementById('moneyDisplay').innerHTML = 0;
 	// document.getElementById('dimension1Display').innerHTML = 0;
@@ -42,16 +47,16 @@ function dimUnlockedUpdate() {
 	switch(player.numberOfDims) {
 		case 1:
 			
-			document.getElementById('dim2DisplayParagraph').innerHTML = 'You need $2000 to unlock 2nd dimension';
+			document.getElementById('dim2DisplayPara').innerHTML = 'You need $2000 to unlock 2nd dimension';
 			document.getElementById('dim2').innerHTML = 'Click to unlock 2nd dimension!';
 
 			if (player.totalAscensions >= 1) {
-				document.getElementById('dim3DisplayParagraph').style.display = 'block';
+				document.getElementById('dim3DisplayPara').style.display = 'block';
 				document.getElementById('dim3').style.display = 'block';
 				document.getElementById('dim3').innerHTML = 'Click to unlock 3rd dimension!';
-				document.getElementById('dim3DisplayParagraph').innerHTML = 'You need $30000 to unlock 3rd dimension';
+				document.getElementById('dim3DisplayPara').innerHTML = 'You need $30000 to unlock 3rd dimension';
 			} else {
-				document.getElementById('dim3DisplayParagraph').style.display = 'none';
+				document.getElementById('dim3DisplayPara').style.display = 'none';
 				document.getElementById('dim3').style.display = 'none';
 			}
 
@@ -63,13 +68,13 @@ function dimUnlockedUpdate() {
 			break;
 
 		case 2:
-			document.getElementById('dim2DisplayParagraph').style.display = 'block';
-			document.getElementById('dim2DisplayParagraph').innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
+			document.getElementById('dim2DisplayPara').style.display = 'block';
+			document.getElementById('dim2DisplayPara').innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
 			document.getElementById('dim2').innerHTML = 'Click for 2nd dimension!';
 
 			document.getElementById('dim3').style.display = 'block';
-			document.getElementById('dim3DisplayParagraph').style.display = 'block';
-			document.getElementById('dim3DisplayParagraph').innerHTML = 'You need $30000 to unlock 3rd dimension';
+			document.getElementById('dim3DisplayPara').style.display = 'block';
+			document.getElementById('dim3DisplayPara').innerHTML = 'You need $30000 to unlock 3rd dimension';
 			document.getElementById('dim3').innerHTML = 'Click to unlock 3rd dimension!';
 
 			document.getElementById('dim2Display').innerHTML = player.dim2;
@@ -77,12 +82,12 @@ function dimUnlockedUpdate() {
  			break;
 
  		case 3:
-			document.getElementById('dim2DisplayParagraph').style.display = 'block';
-			document.getElementById('dim2DisplayParagraph').innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
+			document.getElementById('dim2DisplayPara').style.display = 'block';
+			document.getElementById('dim2DisplayPara').innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
 			document.getElementById('dim2').innerHTML = 'Click for 2nd dimension!';
 
-			document.getElementById('dim3DisplayParagraph').style.display = 'block';
-			document.getElementById('dim3DisplayParagraph').innerHTML = 'You have <span id="dim3Display"></span> 3rd dimensions';
+			document.getElementById('dim3DisplayPara').style.display = 'block';
+			document.getElementById('dim3DisplayPara').innerHTML = 'You have <span id="dim3Display"></span> 3rd dimensions';
 			document.getElementById('dim3').innerHTML = 'Click for 3rd dimension!';
 
 			document.getElementById('dim2Display').innerHTML = player.dim2;
@@ -315,6 +320,6 @@ function changeTab(evt, tab) {
 		tabcontent[i].style.display = 'none';
 	}
 
-   document.getElementById(tab).style.display = 'block';    //
-	evt.currentTarget.className += " active"; 
+   document.getElementById(tab).style.display = 'block';
+	// evt.currentTarget.className += " active"; 
 }
