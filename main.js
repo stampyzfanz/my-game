@@ -1,16 +1,19 @@
 "use strict";
 
 // TODO:
-// 0 Make upgrades
-// 1 Make working ascension
-// 2 Make working transcendsion
-// 3 Think of more prestige names
-// 4 Make invisible elements not take up space 
+// -1 Add offline progression - CURRENTLY WORKING ON
+// 0 Make upgrades 
+// 1 Make working ascension - DELAYED
+// 2 Make working transcendsion - DELAYED
+// 3 Think of more prestige names - DELAYED
+// 4 Make invisible elements not take up space - DONE
 
 // setup();
 
 // var upgradeDimListOfCostsStr = ['$2000', '$NaN', '$'+5e6, '$' + 10**1024];
 // var upgradeDimListOfCostsInt = [2000, 0, 5e6, 10**1024];
+
+// player object is for most values tied to the user
 let player = {
 	'money': 0,
 	'dim1': 0,
@@ -20,20 +23,30 @@ let player = {
 	'numberOfDims': 1,
 	'totalMoney': 0,
 	'ascensions': 0,
-	'totalAscensions': 0
+	'totalAscensions': 0,
 };
 
-let dom = {
-	'dim2DisplayPara': document.getElementById('dim2DisplayPara').innerHTML,
-	'lol catz': 'evil'
+let currentTime = Date.now();
+// let showCoords = false;
+
+// doc object is for DOM elements which I need to get multiple times
+let doc = {
+	'dim2': document.getElementById('dim2'),
+	'dim3': document.getElementById('dim3'),
+	'dim1Display': document.getElementById('dim1Display'),
+	'dim2Display': document.getElementById('dim2Display'),
+	'dim3Display': document.getElementById('dim3Display'),
+	'dim2DisplayPara': document.getElementById('dim2DisplayPara'),
+	'dim3DisplayPara': document.getElementById('dim3DisplayPara'),
 }
 
+// If I decide to use p5 lib      
 function setup() {
 	// document.getElementById('moneyDisplay').innerHTML = 0;
 	// document.getElementById('dimension1Display').innerHTML = 0;
 	// createCanvas(0, 0)
-	// noCanvas();
-	// createP('lol p')
+	noCanvas();
+	// createP('lol p');
 }
 
 function showMoney() {
@@ -43,21 +56,28 @@ function showMoney() {
 			// Math.floor(player.money) + ' new Christians';
 }
 
-function dimUnlockedUpdate() {
+function dimUnlockedUpdate() { 
+	// this function is one of the most complicated functions in this js file
+	// tldr: updates the dimensions's text (buildings is proper incremental games term).
+	// eg. 'dim2 needs $<some amount of money>' then you unlock dim2 it states:
+	// 'you have <# of dim2> second dimensions'
 	switch(player.numberOfDims) {
-		case 1:
+		case 1: // if the user has one dimension unlocked (eg. it says that dim2 costs $2000)
 			
-			document.getElementById('dim2DisplayPara').innerHTML = 'You need $2000 to unlock 2nd dimension';
-			document.getElementById('dim2').innerHTML = 'Click to unlock 2nd dimension!';
+			// doc object naming conventions is: (I was going to explain but just check html for id names)
+			doc.dim2DisplayPara.innerHTML = 'You need $2000 to unlock 2nd dimension';
+			doc.dim2.innerHTML = 'Click to unlock 2nd dimension!';
 
-			if (player.totalAscensions >= 1) {
-				document.getElementById('dim3DisplayPara').style.display = 'block';
-				document.getElementById('dim3').style.display = 'block';
-				document.getElementById('dim3').innerHTML = 'Click to unlock 3rd dimension!';
-				document.getElementById('dim3DisplayPara').innerHTML = 'You need $30000 to unlock 3rd dimension';
+			if (player.totalAscensions >= 1) { 
+				// if the user ascends, the user can unlock dim3, even if they don't have dim2
+				doc.dim3DisplayPara.style.display = 'block';
+				doc.dim3.style.display = 'block';
+				doc.dim3.innerHTML = 'Click to unlock 3rd dimension!';
+				doc.dim3DisplayPara.innerHTML = 'You need $30000 to unlock 3rd dimension';
 			} else {
-				document.getElementById('dim3DisplayPara').style.display = 'none';
-				document.getElementById('dim3').style.display = 'none';
+				// if this is the users first ascension, then the user can't see dim3
+				doc.dim3DisplayPara.style.display = 'none';
+				dim3.style.display = 'none';
 			}
 
 			// let elements = document.querySelectorAll(".my-class");
@@ -68,36 +88,41 @@ function dimUnlockedUpdate() {
 			break;
 
 		case 2:
-			document.getElementById('dim2DisplayPara').style.display = 'block';
-			document.getElementById('dim2DisplayPara').innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
-			document.getElementById('dim2').innerHTML = 'Click for 2nd dimension!';
+			doc.dim2DisplayPara.style.display = 'block';
+			doc.dim2DisplayPara.innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
+			doc.dim2Display = document.getElementById('dim2Display'); 
+			// updates the element, so when the program updates dim2Display it changes the visible element
+			doc.dim2.innerHTML = 'Click for 2nd dimension!';
 
-			document.getElementById('dim3').style.display = 'block';
-			document.getElementById('dim3DisplayPara').style.display = 'block';
-			document.getElementById('dim3DisplayPara').innerHTML = 'You need $30000 to unlock 3rd dimension';
-			document.getElementById('dim3').innerHTML = 'Click to unlock 3rd dimension!';
+			doc.dim3.style.display = 'block';
+			doc.dim3DisplayPara.style.display = 'block';
+			doc.dim3DisplayPara.innerHTML = 'You need $30000 to unlock 3rd dimension';
+			doc.dim3.innerHTML = 'Click to unlock 3rd dimension!';
 
-			document.getElementById('dim2Display').innerHTML = player.dim2;
+			doc.dim2Display.innerHTML = player.dim2;
+			// doc.dim2Display.innerHTML = 'lol catz';
 
  			break;
 
  		case 3:
-			document.getElementById('dim2DisplayPara').style.display = 'block';
-			document.getElementById('dim2DisplayPara').innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
-			document.getElementById('dim2').innerHTML = 'Click for 2nd dimension!';
+			doc.dim2DisplayPara.style.display = 'block';
+			doc.dim2DisplayPara.innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
+			doc.dim2Display = document.getElementById('dim2Display');
+			doc.dim2.innerHTML = 'Click for 2nd dimension!';
 
-			document.getElementById('dim3DisplayPara').style.display = 'block';
-			document.getElementById('dim3DisplayPara').innerHTML = 'You have <span id="dim3Display"></span> 3rd dimensions';
-			document.getElementById('dim3').innerHTML = 'Click for 3rd dimension!';
+			doc.dim3DisplayPara.style.display = 'block';
+			doc.dim3DisplayPara.innerHTML = 'You have <span id="dim3Display"></span> 3rd dimensions';
+			doc.dim3Display = document.getElementById('dim3Display');
+			doc.dim3.innerHTML = 'Click for 3rd dimension!';
 
-			document.getElementById('dim2Display').innerHTML = player.dim2;
-			document.getElementById('dim3Display').innerHTML = player.dim3;
+			doc.dim2Display.innerHTML = player.dim2;
+			doc.dim3Display.innerHTML = player.dim3;
 
  			break;
 	}
 }
 
-function cookieClick(n) {
+function increaseMoney(n) {
 	player.money += n;
 	player.totalMoney += n;
 	showMoney();
@@ -115,9 +140,28 @@ function cookieClick(n) {
 	// document.getElementById('cursorCost').innerHTML = nextCost;
 // };
 
-window.setInterval(function(){
-	cookieClick(player.dim1/20);
-	localStorage.setItem("player",JSON.stringify(player)); // save game
+window.setInterval(function() { // main game loop, executes 20 times a second, every 50ms
+	increaseMoney(player.dim1/20);
+
+	// try-catch statement because the user could have blocked cookies and localStorage
+	try{
+		// TODO: execute this functionn on page exit
+		localStorage.setItem("player", JSON.stringify(player)); // updates savegame in localStorage
+		localStorage.setItem("timePlayerLeft", currentTime); // updates the time the player left
+	} catch(err){}; // save game
+	currentTime = Date.now();
+
+	// if (showCoords) {
+	// 	// let elephant = window.event || e;
+	// 	document.getElementById('mouseXDisplay').style.display = 'block';
+	// 	document.getElementById('mouseYDisplay').style.display = 'block';
+	// 	document.getElementById('mouseXDisplay').innerHTML = mouseX;
+	// 	document.getElementById('mouseYDisplay').innerHTML = mouseY;
+	// } else {
+	// 	document.getElementById('mouseXDisplay').style.display = 'none';
+	// 	document.getElementById('mouseYDisplay').style.display = 'none';
+	// }
+
 	// console.log(JSON.parse(localStorage.getItem("player")));
 	// dimUnlockedUpdate();
 	// updateSave()
@@ -131,23 +175,48 @@ window.setInterval(function(){
 // };
 
 function load(){
+	let numOfSecsAway;
 	try {
 		let savegame = JSON.parse(localStorage.getItem("player"));
-		// console.log(savegame)
-		player.money = savegame.money;
-		player.totalMoney = savegame.totalMoney;
-		player.dim1 = savegame.dim1;
-		player.dim2 = savegame.dim2;
-		player.dim3 = savegame.dim3;
-		player.numberOfDims = savegame.numberOfDims;
+		let timePlayerLeft = localStorage.getItem('timePlayerLeft');
+
+		// TESTING OFFLINE PROGRESSION
+
+			// console.log(timePlayerLeft + ' - time player left');
+			// console.log(currentTime + ' - current time');
+			// console.log(currentTime - timePlayerLeft + ' - difference player;
+			// console.log((currentTime - timePlayerLeft) / 1000 + ' - difference between times in secs');
+			numOfSecsAway = parseInt((currentTime - timePlayerLeft) / 1000);
+			// console.log(test);
+
+		if (savegame) player = savegame;
+
+			// console.log(numOfSecsAway + ' - secsAway');
+			// console.log(player.dim1 + ' - dim1');
+			// console.log(player.dim1 * numOfSecsAway + ' - add this to money');
+			player.money += player.dim1 * numOfSecsAway;
+			offlineEarnings(player.dim1 * numOfSecsAway, numOfSecsAway);
+
+		// 
+
 	} catch(err){};
+	// try {
+	// 	// console.log(savegame)
+	// 	player.money = savegame.money;
+	// 	player.totalMoney = savegame.totalMoney;
+	// 	player.dim1 = savegame.dim1;
+	// 	player.dim2 = savegame.dim2;
+	// 	player.dim3 = savegame.dim3;
+	// 	player.numberOfDims = savegame.numberOfDims;
+	// } catch(err){};
+
 	showMoney();
-	document.getElementById('dim1Display').innerHTML = player.dim1;
-	document.getElementById('dim2Display').innerHTML = player.dim2;
-	document.getElementById('dim3Display').innerHTML = player.dim3;
+	doc.dim1Display.innerHTML = player.dim1;
+	doc.dim2Display.innerHTML = player.dim2;
+	doc.dim3Display.innerHTML = player.dim3;
 	dimUnlockedUpdate();
 
-	document.getElementById('dimsTab').click()
+	// document.getElementById('dimsTab').click()
 	// Object.keys(player).forEach(function(key, index, theArr, player){
 		// if (typeof theArr[index] !== "undefined") 
 		// theArr[key] = savegame.money;
@@ -155,11 +224,7 @@ function load(){
 	// });
 }
 
-load();
-
 function wipeSave(){
-	localStorage.removeItem("player");
-
 	player.money = 0;
 	player.totalMoney = 0;
 	getDim1('0');
@@ -169,6 +234,9 @@ function wipeSave(){
 	player.dim3 = 0;
 	player.numberOfDims = 1;
 	dimUnlockedUpdate();
+
+	localStorage.removeItem("player");
+
 	// player = _.mapValues(player, () => 0);
 }
 
@@ -180,7 +248,7 @@ function getDim1(n) {
 	}
 
 	// dimUnlockedUpdate()
-	document.getElementById('dim1Display').innerHTML = player.dim1;
+	doc.dim1Display.innerHTML = player.dim1;
 }
 
 function getDim2(n) {
@@ -191,7 +259,7 @@ function getDim2(n) {
 	}
 
 	// dimUnlockedUpdate()
-	document.getElementById('dim2Display').innerHTML = player.dim2;
+	doc.dim2Display.innerHTML = player.dim2;
 }
 
 function getDim3(n) {
@@ -202,7 +270,7 @@ function getDim3(n) {
 	}
 
 	// dimUnlockedUpdate()
-	document.getElementById('dim3Display').innerHTML = player.dim3;
+	doc.dim3Display.innerHTML = player.dim3;
 }
 
 function showSave() {
@@ -289,12 +357,12 @@ function clickedDim2() {
 		}
 	} else {
 		if (player.money >= 2e3) {
-			console.log('got enough money');
+			// console.log('got enough money');
 			player.numberOfDims = 2;
-			getDim1('0')
+			// getDim1('0')
 			dimUnlockedUpdate();
 		} else {
-			console.log('need more money')
+			// console.log('need more money')
 		}
 	}
 }
@@ -304,12 +372,12 @@ function clickedDim3() {
 		getDim3(1);
 	} else {
 		if (player.money >= 3e4) {
-			console.log('got enough money')
+			// console.log('got enough money')
 			player.numberOfDims = 3;
-			getDim1('0')
+			// getDim1('0')
 			dimUnlockedUpdate();
 		} else {
-			console.log('need more money')
+			// console.log('need more money')
 		}
 	}
 }
@@ -323,3 +391,33 @@ function changeTab(evt, tab) {
    document.getElementById(tab).style.display = 'block';
 	// evt.currentTarget.className += " active"; 
 }
+
+// Below is attempt to stop zooming in when double tap
+
+// function doubleTapZoom(bool) {
+// 	let meta = document.getElementById('doubleTapZoomIn');
+// 	if (bool) {
+// 		meta.setAttribute('content', 'width=device-width, initi \
+// 			al-scale=1.0, maximum-scale=1.0, user-scalable=0');
+// 	} else {
+// 		// meta.setAttribute('content', '');
+
+// 	}
+// }
+
+function cheat() {
+	player.money += 1e80;
+}
+
+function offlineEarnings(earnings, time_away) {
+	if (time_away >= 2) {
+		changeTab('event', 'offlineEarningsTab');
+		// let formatted_time_away = (new Date()).clearTime().addSeconds(time_away).toString('H:mm:ss'); 
+		document.getElementById('timeAwayDisplay').innerHTML = time_away + ' seconds';
+		document.getElementById('amountEarnedDisplay').innerHTML = '$' + earnings;
+	} else {
+		document.getElementById('dimsTab').click();
+	}
+}
+
+load();
