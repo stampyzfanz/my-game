@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 <meta charset="utf-8">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> -->
+<!-- <meta id="doubleTapZoomInMeta"> -->
 	<head>
 		<link rel="stylesheet" type="text/css" href="interface.css"/>
 		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js"></script> -->
@@ -10,13 +12,13 @@
 	<body>
 		<nav>
 			<ul>
-				<li onclick="changeTab('event', 'dims');" class="tablinks" id="dimsTab">Dims</li>
-				<li onclick="changeTab('event', 'options');" class="tablinks" id="optionsTab">Options</li>
-				<li onclick="changeTab('event', 'stats');" class="tablinks" id="statsTab">Stats</li>
-				<li onclick="changeTab('event', 'achievements')" class="tablinks" id="achievementsTab">Achieve</li>
-				<li onclick="changeTab('event', 'tut')" class="tablinks" id="tutTab">Tut</li>
-				<li onclick="changeTab('event', 'strats')" class="tablinks" id="stratsTab">Strats</li>
-				<li onclick="changeTab('event', 'credits')" class="tablinks" id="creditsTab">Credits</li>
+				<li class="btn" onclick="changeTab('event', 'dims');" class="tablinks" id="dimsTab">Dims</li>
+				<li class="btn" onclick="changeTab('event', 'options');" class="tablinks" id="optionsTab">Options</li>
+				<li class="btn" onclick="changeTab('event', 'stats');" class="tablinks" id="statsTab">Stats</li>
+				<li class="btn" onclick="changeTab('event', 'achievements')" class="tablinks" id="achievementsTab">Achieve</li>
+				<li class="btn" onclick="changeTab('event', 'tut')" class="tablinks" id="tutTab">Tut</li>
+				<li class="btn" onclick="changeTab('event', 'strats')" class="tablinks" id="stratsTab">Strats</li>
+				<li class="btn" onclick="changeTab('event', 'credits')" class="tablinks" id="creditsTab">Credits</li>
 			</ul>
 		</nav>
 
@@ -25,6 +27,7 @@
 			<div id="moneyDisplayDiv">
 				<span id="moneyDisplay"></span>
 			</div>
+			<br/>
 			<!-- <div><p></p></div> -->
 			<!-- <button onClick="cookieClick(1)">Click me!</button> -->
 			<div class="row">
@@ -42,17 +45,19 @@
 				<div class="column">
 					<div class="allDimDiv make40OfViewPort">
 						<div id="dim1Div">
-							<p id="dim1" onclick="clickedDim1()">Click for 1st dimension!</p>
+							<p class="btn" id="dim1" onclick="clickedDim1()">Click for 1st dimension!</p>
 						</div>
 						<div id="dim2Div">
-							<p id="dim2" onclick="clickedDim2()">Click for 2nd dimension!</p>
+							<p class="btn" id="dim2" onclick="clickedDim2()">Click for 2nd dimension!</p>
 						</div>
 						<div id="dim3Div">
-							<p id="dim3" onclick="clickedDim3()">Click for 3rd dimension!</p>
+							<p class="btn" id="dim3" onclick="clickedDim3()">Click for 3rd dimension!</p>
 						</div>
 					</div>
 				</div>
-				<div class="column"><p></p></div>
+				<div class="column">
+					<p>Multiplier to all dims:</p>
+				</div>
 			</div>
 			<!-- <div id="ascensionDiv" class="prestigeDiv"> -->
 				<!-- <p class="pestigeBuyer" id="ascension" onclick="tryToAscend(1)">You can ascend when you get <span id="ascensionCost"></span>. You get a new dimension on ascension!</p> -->
@@ -60,9 +65,10 @@
 			<br/>
 			<!-- <p>Cursors: <span id="cursors">0</span><br/>Cost: <span id="cursorCost">10</span><br/></p> -->
 			<!-- <button onClick="buyCursor()">Click for cursor.</button> -->
-			<button onclick="wipeSave()">Reset save</button>
-			<button onclick="showSave()">Show save</button>
-			<p id='showSaveBtn'></p>
+			<button class="btn" onclick="wipeSave()">Reset save</button>
+			<button class="btn" onclick="showSave()">Show save</button>
+			<button class="btn" onclick="showCoords = true;">Show mouse co-ords</button>
+			<p id='showSaveBtn'></p><p id="mouseXDisplay"></p><p id="mouseYDisplay"></p>
 		</div>
 
 		<div id="options" class="tabcontent">
@@ -97,10 +103,14 @@
 					<li>First off, I would like to thank <a href="https://www.gethopscotch.com/">Hopscotch</a> for teaching me that coding exists and fundamentals of code.</li>
 				</ul>
 			</p>
+		</div>	
+
+		<div id="offlineEarningsTab" class="tabcontent">
+			<p>You were away for <span id="timeAwayDisplay"></span> and earned <span id="amountEarnedDisplay"></span>.</p>
 		</div>
 
 		<script type="text/javascript" src="main.js"></script>
 		<script type="text/javascript" src="p5.js"></script>
-		<script type="text/javascript" src="p5.dom.js"></script>
+		<!-- <script type="text/javascript" src="p5.dom.js"></script> -->
 	</body>
 </html>
