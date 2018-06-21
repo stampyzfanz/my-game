@@ -8,6 +8,10 @@ body {
 	font-size: 17px;
 }	
 
+.btn{
+	cursor: pointer;
+}
+
 .make40OfViewPort{
   width: 40vw;
 }
@@ -48,7 +52,6 @@ it is not spescified on unused whitespace in margins or something*/
 	border-radius: 5px;
 	text-align: center;
 	/*text-align: center;*/
-	cursor: pointer;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 }
@@ -81,6 +84,9 @@ it is not spescified on unused whitespace in margins or something*/
 	/*margin-left: 23%;*/
 	font-size: 125%;
 	font-family: monospace;
+	position: fixed;
+	top: 3px;
+	left: 3px;
 }
 
 #moneyDisplayDiv{
