@@ -1,4 +1,4 @@
-html{
+html {
 	/*display: block;*/
 }
 
@@ -8,22 +8,22 @@ body {
 	font-size: 17px;
 }	
 
-.btn{
+.btn {
 	cursor: pointer;
 }
 
-.make40OfViewPort{
+.make40OfViewPort {
   width: 40vw;
 }
 
-.allDimDiv{
+.allDimDiv {
 	/*text-align: center;*/
 	/*overflow: hidden;*/
 	/*white-space: nowrap;*/
 	/*text-overflow: ellipsis;*/
 }
 
-#dim1DisplayDiv, #dim2DisplayDiv, #dim3DisplayDiv{
+#dim1DisplayDiv, #dim2DisplayDiv, #dim3DisplayDiv {
 	background-color: lightblue;
 	border-radius: 5px;
 	width: 80%;
@@ -39,11 +39,11 @@ nav li {
   margin-bottom: 5px;
 }
 
-.make25OfViewPort{
+.make25OfViewPort {
  	width: 30vw; 
 }
 
-#dim1Div, #dim2Div, #dim3Div{ /* Only specifies where the is text;
+#dim1Div, #dim2Div, #dim3Div { /* Only specifies where the is text;
 it is not spescified on unused whitespace in margins or something*/
 	/*overflow: hidden;*/
 	/*white-space: nowrap;*/
@@ -56,23 +56,23 @@ it is not spescified on unused whitespace in margins or something*/
 	-moz-user-select: none;
 }
 
-.dim1{
+.dim1 {
 	/*width: 25%;*/
 }
 
-.row{
+.row {
 	display: flex;
 }
 
-.column{
+.column {
 	flex: 25%;
 }
 
-#showSaveBtn{
+#showSaveBtn {
 	font-size: 10px;
 }
 
-.prestigeDiv{
+.prestigeDiv {
 	background-color: #7df9ff;
 	border-radius: 5px;
 	width: 49.4vw;
@@ -80,7 +80,7 @@ it is not spescified on unused whitespace in margins or something*/
 	/*display: inline-block;*/
 }
 
-#moneyDisplay{
+#moneyDisplay {
 	/*margin-left: 23%;*/
 	font-size: 125%;
 	font-family: monospace;
@@ -89,11 +89,11 @@ it is not spescified on unused whitespace in margins or something*/
 	left: 3px;
 }
 
-#moneyDisplayDiv{
+#moneyDisplayDiv {
 	width: 50vw;
 }
 
-.dim1Div{
+.dim1Div {
 	visibility: visible;
 }
 
