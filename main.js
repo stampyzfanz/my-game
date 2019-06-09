@@ -8,8 +8,6 @@
 // 3 Think of more prestige names - DELAYED
 // 4 Make invisible elements not take up space - DONE
 
-// setup();
-
 // var upgradeDimListOfCostsStr = ['$2000', '$NaN', '$'+5e6, '$' + 10**1024];
 // var upgradeDimListOfCostsInt = [2000, 0, 5e6, 10**1024];
 
@@ -44,31 +42,29 @@ let doc = {
 function setup() {
 	// document.getElementById('moneyDisplay').innerHTML = 0;
 	// document.getElementById('dimension1Display').innerHTML = 0;
-	// createCanvas(0, 0)
 	noCanvas();
-	// createP('lol p');
 }
 
 function showMoney() {
-		document.getElementById("moneyDisplay").innerHTML = '$' +
-			Math.floor(player.money);
-		// document.getElementById("moneyDisplay").innerHTML = 
-			// Math.floor(player.money) + ' new Christians';
+	document.getElementById("moneyDisplay").innerHTML = '$' +
+		Math.floor(player.money);
+	// document.getElementById("moneyDisplay").innerHTML = 
+	// Math.floor(player.money) + ' new Christians';
 }
 
-function dimUnlockedUpdate() { 
+function dimUnlockedUpdate() {
 	// this function is one of the most complicated functions in this js file
 	// tldr: updates the dimensions's text (buildings is proper incremental games term).
 	// eg. 'dim2 needs $<some amount of money>' then you unlock dim2 it states:
 	// 'you have <# of dim2> second dimensions'
-	switch(player.numberOfDims) {
+	switch (player.numberOfDims) {
 		case 1: // if the user has one dimension unlocked (eg. it says that dim2 costs $2000)
-			
+
 			// doc object naming conventions is: (I was going to explain but just check html for id names)
 			doc.dim2DisplayPara.innerHTML = 'You need $2000 to unlock 2nd dimension';
 			doc.dim2.innerHTML = 'Click to unlock 2nd dimension!';
 
-			if (player.totalAscensions >= 1) { 
+			if (player.totalAscensions >= 1) {
 				// if the user ascends, the user can unlock dim3, even if they don't have dim2
 				doc.dim3DisplayPara.style.display = 'block';
 				doc.dim3.style.display = 'block';
@@ -83,14 +79,14 @@ function dimUnlockedUpdate() {
 			// let elements = document.querySelectorAll(".my-class");
 			// let i = titles.length;
 			// while (i--) {
-   		// titles[i].setAttribute("style", "cursor:pointer");
+			// titles[i].setAttribute("style", "cursor:pointer");
 			// }
 			break;
 
 		case 2:
 			doc.dim2DisplayPara.style.display = 'block';
-			doc.dim2DisplayPara.innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
-			doc.dim2Display = document.getElementById('dim2Display'); 
+			doc.dim2DisplayPara.innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions';
+			doc.dim2Display = document.getElementById('dim2Display');
 			// updates the element, so when the program updates dim2Display it changes the visible element
 			doc.dim2.innerHTML = 'Click for 2nd dimension!';
 
@@ -102,11 +98,11 @@ function dimUnlockedUpdate() {
 			doc.dim2Display.innerHTML = player.dim2;
 			// doc.dim2Display.innerHTML = 'lol catz';
 
- 			break;
+			break;
 
- 		case 3:
+		case 3:
 			doc.dim2DisplayPara.style.display = 'block';
-			doc.dim2DisplayPara.innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions'; 
+			doc.dim2DisplayPara.innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions';
 			doc.dim2Display = document.getElementById('dim2Display');
 			doc.dim2.innerHTML = 'Click for 2nd dimension!';
 
@@ -118,7 +114,7 @@ function dimUnlockedUpdate() {
 			doc.dim2Display.innerHTML = player.dim2;
 			doc.dim3Display.innerHTML = player.dim3;
 
- 			break;
+			break;
 	}
 }
 
@@ -129,26 +125,26 @@ function increaseMoney(n) {
 }
 
 // function buyCursor(){
-	// let cursorCost = Math.floor(10 * Math.pow(1.1,player.	cursors - 1));
-	// if(player.money >= cursorCost){
-		// player.cursors++;
-		// player.money -= cursorCost;
-		// document.getElementById('cursors').innerHTML = player.cursors;
-		// showMoney();
-	// };
-	// let nextCost = Math.floor(10 * Math.pow(1.1,player.cursors));
-	// document.getElementById('cursorCost').innerHTML = nextCost;
+// let cursorCost = Math.floor(10 * Math.pow(1.1,player.	cursors - 1));
+// if(player.money >= cursorCost){
+// player.cursors++;
+// player.money -= cursorCost;
+// document.getElementById('cursors').innerHTML = player.cursors;
+// showMoney();
+// };
+// let nextCost = Math.floor(10 * Math.pow(1.1,player.cursors));
+// document.getElementById('cursorCost').innerHTML = nextCost;
 // };
 
 window.setInterval(function() { // main game loop, executes 20 times a second, every 50ms
-	increaseMoney(player.dim1/20);
+	increaseMoney(player.dim1 / 20);
 
 	// try-catch statement because the user could have blocked cookies and localStorage
-	try{
+	try {
 		// TODO: execute this functionn on page exit
 		localStorage.setItem("player", JSON.stringify(player)); // updates savegame in localStorage
 		localStorage.setItem("timePlayerLeft", currentTime); // updates the time the player left
-	} catch(err){}; // save game
+	} catch (err) {}; // save game
 	currentTime = Date.now();
 
 	// if (showCoords) {
@@ -169,12 +165,12 @@ window.setInterval(function() { // main game loop, executes 20 times a second, e
 
 // function updateSave() {
 
-	// for (i = 0; i < save.length; i++) {
-	// 	// TODO; update the save using for loop
-	// }
+// for (i = 0; i < save.length; i++) {
+// 	// TODO; update the save using for loop
+// }
 // };
 
-function load(){
+function load() {
 	let numOfSecsAway;
 	try {
 		let savegame = JSON.parse(localStorage.getItem("player"));
@@ -182,24 +178,24 @@ function load(){
 
 		// TESTING OFFLINE PROGRESSION
 
-			// console.log(timePlayerLeft + ' - time player left');
-			// console.log(currentTime + ' - current time');
-			// console.log(currentTime - timePlayerLeft + ' - difference player;
-			// console.log((currentTime - timePlayerLeft) / 1000 + ' - difference between times in secs');
-			numOfSecsAway = parseInt((currentTime - timePlayerLeft) / 1000);
-			// console.log(test);
+		// console.log(timePlayerLeft + ' - time player left');
+		// console.log(currentTime + ' - current time');
+		// console.log(currentTime - timePlayerLeft + ' - difference player;
+		// console.log((currentTime - timePlayerLeft) / 1000 + ' - difference between times in secs');
+		numOfSecsAway = parseInt((currentTime - timePlayerLeft) / 1000);
+		// console.log(test);
 
 		if (savegame) player = savegame;
 
-			// console.log(numOfSecsAway + ' - secsAway');
-			// console.log(player.dim1 + ' - dim1');
-			// console.log(player.dim1 * numOfSecsAway + ' - add this to money');
-			player.money += player.dim1 * numOfSecsAway;
-			offlineEarnings(player.dim1 * numOfSecsAway, numOfSecsAway);
+		// console.log(numOfSecsAway + ' - secsAway');
+		// console.log(player.dim1 + ' - dim1');
+		// console.log(player.dim1 * numOfSecsAway + ' - add this to money');
+		player.money += player.dim1 * numOfSecsAway;
+		offlineEarnings(player.dim1 * numOfSecsAway, numOfSecsAway);
 
 		// 
 
-	} catch(err){};
+	} catch (err) {};
 	// try {
 	// 	// console.log(savegame)
 	// 	player.money = savegame.money;
@@ -218,13 +214,13 @@ function load(){
 
 	// document.getElementById('dimsTab').click()
 	// Object.keys(player).forEach(function(key, index, theArr, player){
-		// if (typeof theArr[index] !== "undefined") 
-		// theArr[key] = savegame.money;
-		// key = 0;	
+	// if (typeof theArr[index] !== "undefined") 
+	// theArr[key] = savegame.money;
+	// key = 0;	
 	// });
 }
 
-function wipeSave(){
+function wipeSave() {
 	player.money = 0;
 	player.totalMoney = 0;
 	getDim1('0');
@@ -241,7 +237,7 @@ function wipeSave(){
 }
 
 function getDim1(n) {
-	if (n==='0') {
+	if (n === '0') {
 		player.dim1 = 0;
 	} else {
 		player.dim1 += n;
@@ -252,7 +248,7 @@ function getDim1(n) {
 }
 
 function getDim2(n) {
-	if (n==='1') {
+	if (n === '1') {
 		player.dim2 = 1;
 	} else {
 		player.dim2 += n;
@@ -263,7 +259,7 @@ function getDim2(n) {
 }
 
 function getDim3(n) {
-	if (n==='1') {
+	if (n === '1') {
 		player.dim3 = 1;
 	} else {
 		player.dim3 += n;
@@ -275,9 +271,9 @@ function getDim3(n) {
 
 function showSave() {
 	let browser = whatBrowser();
-	switch(browser){
+	switch (browser) {
 		case 'ioschrome':
-		case 'googlechrome': 
+		case 'googlechrome':
 			document.getElementById('showSaveBtn').innerHTML = 'Copy \
 				paste this into the console to load save:<br/>player = \
 				' + JSON.stringify(player);
@@ -316,32 +312,32 @@ function whatBrowser() {
 	// and if not iOS Chrome check
 	// so use the below updated condition
 	var isChromium = window.chrome,
-	    winNav = window.navigator,
-	    vendorName = winNav.vendor,
-	    isOpera = winNav.userAgent.indexOf("OPR") > -1,
-	    isIEedge = winNav.userAgent.indexOf("Edge") > -1,
-	    isIOSChrome = winNav.userAgent.match("CriOS");
+		winNav = window.navigator,
+		vendorName = winNav.vendor,
+		isOpera = winNav.userAgent.indexOf("OPR") > -1,
+		isIEedge = winNav.userAgent.indexOf("Edge") > -1,
+		isIOSChrome = winNav.userAgent.match("CriOS");
 
 	if (isIOSChrome) {
-	   // is Google Chrome on IOS
-	   return 'ioschrome'
+		// is Google Chrome on IOS
+		return 'ioschrome'
 	} else if (
-	  isChromium !== null &&
-	  typeof isChromium !== "undefined" &&
-	  vendorName === "Google Inc." &&
-	  isOpera === false &&
-	  isIEedge === false
+		isChromium !== null &&
+		typeof isChromium !== "undefined" &&
+		vendorName === "Google Inc." &&
+		isOpera === false &&
+		isIEedge === false
 	) {
-	   // is Google Chrome
-	   return 'googlechrome'
-	} else { 
-	   // not Google Chrome 
-	   return '!googlechrome'
+		// is Google Chrome
+		return 'googlechrome'
+	} else {
+		// not Google Chrome 
+		return '!googlechrome'
 	}
 }
 
 function clickedDim1() {
-	if(player.dim2!==0){
+	if (player.dim2 !== 0) {
 		getDim1(player.dim2);
 	} else {
 		getDim1(1);
@@ -350,7 +346,7 @@ function clickedDim1() {
 
 function clickedDim2() {
 	if (!(player.numberOfDims < 2)) {
-		if(player.dim3!==0) {
+		if (player.dim3 !== 0) {
 			getDim2(player.dim3);
 		} else {
 			getDim2(1);
@@ -384,11 +380,11 @@ function clickedDim3() {
 
 function changeTab(evt, tab) {
 	let tabcontent = document.getElementsByClassName('tabcontent');
-	for(let i = 0; i < tabcontent.length; i++) {
+	for (let i = 0; i < tabcontent.length; i++) {
 		tabcontent[i].style.display = 'none';
 	}
 
-   document.getElementById(tab).style.display = 'block';
+	document.getElementById(tab).style.display = 'block';
 	// evt.currentTarget.className += " active"; 
 }
 
