@@ -87,7 +87,8 @@ function dimUnlockedUpdate() {
 			doc.dim2DisplayPara.style.display = 'block';
 			doc.dim2DisplayPara.innerHTML = 'You have <span id="dim2Display"></span> 2nd dimenions';
 			doc.dim2Display = document.getElementById('dim2Display');
-			// updates the element, so when the program updates dim2Display it changes the visible element
+			// updates the element, so when the program updates dim2Display,
+			// it changes the visible element
 			doc.dim2.innerHTML = 'Click for 2nd dimension!';
 
 			doc.dim3.style.display = 'block';
@@ -161,8 +162,13 @@ window.setInterval(function() { // main game loop, executes 20 times a second, e
 	// console.log(JSON.parse(localStorage.getItem("player")));
 	// dimUnlockedUpdate();
 	// updateSave()
+
+	// google analytics
+	// implemented using this guide: http://dhmstark.co.uk/articles/incrementals-part-2.html
+	ga('send', 'event', 'My Game', 'Save');
 }, 50);
 
+// TODO; add offline progression
 // function updateSave() {
 
 // for (i = 0; i < save.length; i++) {
