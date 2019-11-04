@@ -48,8 +48,6 @@ function setup() {
 function showMoney() {
 	document.getElementById("moneyDisplay").innerHTML = '$' +
 		Math.floor(player.money);
-	// document.getElementById("moneyDisplay").innerHTML = 
-	// Math.floor(player.money) + ' new Christians';
 }
 
 function dimUnlockedUpdate() {
