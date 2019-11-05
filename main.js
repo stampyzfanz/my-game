@@ -7,8 +7,6 @@
 // 3 Make working ascension
 // 4 Consider using bootstrap or something
 /*
-refactor load
-refactor offline earnings
 show cooords
 */
 
@@ -30,7 +28,7 @@ let player = {
 
 let currentTime = Date.now();
 
-const defaults = Object.create(player);
+const defaults = Object.assign({}, player);
 const dimensionCost = [0, 2e3, 3e4];
 
 // doc object is for DOM elements which I need to get multiple times
@@ -96,7 +94,7 @@ function dimUnlockedUpdate() {
 
 	switch (player.dimNum) {
 		case 1:
-			showDim(2, "unlocked");
+			showDim(2, "locked");
 
 			// ASCENSION CODE
 			if (player.totalAscensions >= 1) {
@@ -132,20 +130,20 @@ window.setInterval(function() { // main game loop, executes 20 times a second, e
 		// TODO: execute this functionn on page exit
 		localStorage.setItem("player", JSON.stringify(player));
 		// updates savegame in localStorage
-		localStorage.setItem("timeDisplayPlayerLeft", currentTime);
+		localStorage.setItem("timePlayerLeft", currentTime);
 		// updates the time the player left
 	} catch (err) {}; // save game
 	currentTime = Date.now(); // unix value
 
 	// if (showCoords) {
 	// 	// let elephant = window.event || e;
-	// 	document.getElementById('mouseXDisplay').style.display = 'block';
-	// 	document.getElementById('mouseYDisplay').style.display = 'block';
-	// 	document.getElementById('mouseXDisplay').innerHTML = mouseX;
-	// 	document.getElementById('mouseYDisplay').innerHTML = mouseY;
+	// 	document.getElementById('mouseXP').style.display = 'block';
+	// 	document.getElementById('mouseYP').style.display = 'block';
+	// 	document.getElementById('mouseXP').innerHTML = mouseX;
+	// 	document.getElementById('mouseYP').innerHTML = mouseY;
 	// } else {
-	// 	document.getElementById('mouseXDisplay').style.display = 'none';
-	// 	document.getElementById('mouseYDisplay').style.display = 'none';
+	// 	document.getElementById('mouseXP').style.display = 'none';
+	// 	document.getElementById('mouseYP').style.display = 'none';
 	// }
 	// console.log(JSON.parse(localStorage.getItem("player")));
 	// dimUnlockedUpdate();
@@ -162,30 +160,26 @@ window.setInterval(function() { // main game loop, executes 20 times a second, e
 // };
 
 function load() {
-	let numOfSecsAway;
+	let numSecsAway;
 	try {
 		let savegame = JSON.parse(localStorage.getItem("player"));
 		let timePlayerLeft = localStorage.getItem('timePlayerLeft');
+		if (timePlayerLeft !== null) {
+			// if its not first time playing
+			numSecsAway = parseInt((currentTime - timePlayerLeft) / 1000);
 
-		// TESTING OFFLINE DisplayPROGRESSION
+			if (savegame) player = savegame;
 
-		// console.log(timeDisplayPlayerLeft + ' - time player left');
-		// console.log(currentTime + ' - current time');
-		// console.log(currentTime - timeDisplayPlayerLeft + ' - difference player;
-		// console.log((currentTime - timeDisplayPlayerLeft) / 1000 + ' \
-		// - difference between times in secs');
-		numOfSecsAway = parseInt((currentTime - timePlayerLeft) / 1000);
-		// console.log(test);
+			player.money += player.dim1 * numSecsAway;
+			offlineEarnings(player.dim1 * numSecsAway, numSecsAway);
+		} else {
+			document.getElementById('dimsTab').click();
+		}
+	} catch (err) {
+		// TODO: Tell user to enable cookies
+		console.log(err);
+	};
 
-		if (savegame) player = savegame;
-
-		// console.log(numOfSecsAway + ' - secsAway');
-		// console.log(player.dim1 + ' - dim1');
-		// console.log(player.dim1 * numOfSecsAway + ' - add this to money');
-		player.money += player.dim1 * numOfSecsAway;
-		offlineEarnings(player.dim1 * numOfSecsAway, numOfSecsAway);
-
-	} catch (err) {};
 
 	doc.money.innerHTML = '$' + Math.floor(player.money);
 	doc.dim1Display.innerHTML = player.dim1;
@@ -278,11 +272,22 @@ function cheat() {
 
 function offlineEarnings(earnings, time_away) {
 	if (time_away >= 2) {
+		console.log(time_away);
+
 		changeTab('event', 'offlineEarningsTab');
-		// let formatted_time_away = (new Date()).clearTime()
-		// .addSeconds(time_away).toString('H:mm:ss'); 
-		document.getElementById('timeAwayDisplay').innerHTML = time_away + ' seconds';
-		document.getElementById('amountEarnedDisplay').innerHTML = '$' + earnings;
+
+		let formatted_time_away =
+			(new Date(time_away * 1000))
+			.toUTCString()
+			.match(/(\d\d:\d\d:\d\d)/)[0];
+		// copy pasta ^
+
+
+		document.getElementById('timeAwayDisplay')
+			// .innerHTML = time_away + ' seconds';
+			.innerHTML = formatted_time_away;
+		document.getElementById('amountEarnedDisplay')
+			.innerHTML = '$' + earnings;
 	} else {
 		document.getElementById('dimsTab').click();
 	}
