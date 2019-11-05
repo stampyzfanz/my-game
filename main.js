@@ -31,6 +31,8 @@ let currentTime = Date.now();
 const defaults = Object.assign({}, player);
 const dimensionCost = [0, 2e3, 3e4];
 
+let showCoords = false;
+
 // doc object is for DOM elements which I need to get multiple times
 // doc object naming conventions is: 
 // dim1 is the button where you click
@@ -128,23 +130,23 @@ window.setInterval(function() { // main game loop, executes 20 times a second, e
 	// try-catch statement because the user could have blocked cookies and localStorage
 	try {
 		// TODO: execute this functionn on page exit
-		localStorage.setItem("player", JSON.stringify(player));
 		// updates savegame in localStorage
-		localStorage.setItem("timePlayerLeft", currentTime);
+		localStorage.setItem("player", JSON.stringify(player));
 		// updates the time the player left
+		localStorage.setItem("timePlayerLeft", currentTime);
 	} catch (err) {}; // save game
 	currentTime = Date.now(); // unix value
 
-	// if (showCoords) {
-	// 	// let elephant = window.event || e;
-	// 	document.getElementById('mouseXP').style.display = 'block';
-	// 	document.getElementById('mouseYP').style.display = 'block';
-	// 	document.getElementById('mouseXP').innerHTML = mouseX;
-	// 	document.getElementById('mouseYP').innerHTML = mouseY;
-	// } else {
-	// 	document.getElementById('mouseXP').style.display = 'none';
-	// 	document.getElementById('mouseYP').style.display = 'none';
-	// }
+	if (showCoords) {
+		// let elephant = window.event || e;
+		document.getElementById('mouseXDisplay').style.display = 'block';
+		document.getElementById('mouseYDisplay').style.display = 'block';
+		document.getElementById('mouseXDisplay').innerHTML = winMouseX;
+		document.getElementById('mouseYDisplay').innerHTML = winMouseY;
+	} else {
+		document.getElementById('mouseXDisplay').style.display = 'none';
+		document.getElementById('mouseYDisplay').style.display = 'none';
+	}
 	// console.log(JSON.parse(localStorage.getItem("player")));
 	// dimUnlockedUpdate();
 	// updateSave()
