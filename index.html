@@ -44,25 +44,25 @@
 			<div class="row">
 				<div class="column">
 					<div id="dim1DisplayDiv" class="make25OfViewPort">
-						<p id="dim1DisplayPara">You have <span id="dim1Display"></span> 1st dimensions</p>
+						<p id="dim1DisplayP">You have <span id="dim1Display"></span> 1st dimensions</p>
 					</div>
 					<div id="dim2DisplayDiv" class="make25OfViewPort">
-						<p id="dim2DisplayPara">You have <span id="dim2Display"></span> 2nd dimenions</p>
+						<p id="dim2DisplayP">You have <span id="dim2Display"></span> 2nd dimenions</p>
 					</div>
 					<div id="dim3DisplayDiv" class="make25OfViewPort">
-						<p id="dim3DisplayPara">You have <span id="dim3Display"></span> 3rd dimensions</p>
+						<p id="dim3DisplayP">You have <span id="dim3Display"></span> 3rd dimensions</p>
 					</div>
 				</div>
 				<div class="column">
 					<div class="allDimDiv make40OfViewPort">
 						<div id="dim1Div">
-							<p class="btn" id="dim1" onclick="clickedDim1()">Click for 1st dimension!</p>
+							<p class="btn" id="dim1" onclick="clickedDim(1)">Click for 1st dimension!</p>
 						</div>
 						<div id="dim2Div">
-							<p class="btn" id="dim2" onclick="clickedDim2()">Click for 2nd dimension!</p>
+							<p class="btn" id="dim2" onclick="clickedDim(2)">Click for 2nd dimension!</p>
 						</div>
 						<div id="dim3Div">
-							<p class="btn" id="dim3" onclick="clickedDim3()">Click for 3rd dimension!</p>
+							<p class="btn" id="dim3" onclick="clickedDim(3)">Click for 3rd dimension!</p>
 						</div>
 					</div>
 				</div>
@@ -122,7 +122,7 @@
 						For example, <a href="http://dhmstark.co.uk/articles/incrementals.html">This</a> great guide by the creator of <a href="http://civclicker.sourceforge.net/civclicker/civclicker.html">CivClicker</a>
 					</li>
 					<li>
-						So much of this game is inspired by <a href="ivark.github.io">Antimatter Dimensions</a> and it would be wrong not to disclose it. Highly reccomend.
+						So much of this game is inspired by <a href="ivark.github.io">Antimatter Dimensions</a> and highly reccomend.
 					</li>
 				</ul>
 			</p>
@@ -132,8 +132,9 @@
 			<p>You were away for <span id="timeAwayDisplay"></span> and earned <span id="amountEarnedDisplay"></span>.</p>
 		</div>
 
-		<script type="text/javascript" src="main.js"></script>
 		<script type="text/javascript" src="libraries/p5.js"></script>
 		<script type="text/javascript" src="libraries/p5.dom.js"></script>
+		<script type="text/javascript" src="libraries/random_useful_library.js"></script>
+		<script type="text/javascript" src="main.js"></script>
 	</body>
 </html>
