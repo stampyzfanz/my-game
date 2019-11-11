@@ -21,17 +21,25 @@
 		<title>Dimension Deriver - a clicker / incremental game.</title>
 	</head>
 	<body>
-		<nav>
-			<ul>
-				<li class="btn" onclick="changeTab('event', 'dims');" class="tablinks" id="dimsTab">Dims</li>
-				<li class="btn" onclick="changeTab('event', 'options');" class="tablinks" id="optionsTab">Options</li>
-				<li class="btn" onclick="changeTab('event', 'stats');" class="tablinks" id="statsTab">Stats</li>
-				<li class="btn" onclick="changeTab('event', 'achievements')" class="tablinks" id="achievementsTab">Achieve</li>
-				<li class="btn" onclick="changeTab('event', 'tut')" class="tablinks" id="tutTab">Tut</li>
-				<li class="btn" onclick="changeTab('event', 'strats')" class="tablinks" id="stratsTab">Strats</li>
-				<li class="btn" onclick="changeTab('event', 'credits')" class="tablinks" id="creditsTab">Credits</li>
-			</ul>
-		</nav>
+		<div id="right">
+			<!-- fake console - just to move some elt out of the way -->
+			<p class="console" id="fakeconsole"></p> 
+			<!-- actual console - absolute positioning
+				has text -->
+			<p class="console" id="realconsole">Click the button that says "Click for first dimension to begin"</p>
+				
+			<nav>
+				<ul>
+					<li class="btn" onclick="changeTab('event', 'dims');" class="tablinks" id="dimsTab">Dims</li>
+					<li class="btn" onclick="changeTab('event', 'options');" class="tablinks" id="optionsTab">Options</li>
+					<li class="btn" onclick="changeTab('event', 'stats');" class="tablinks" id="statsTab">Stats</li>
+					<li class="btn" onclick="changeTab('event', 'achievements')" class="tablinks" id="achievementsTab">Achieve</li>
+					<li class="btn" onclick="changeTab('event', 'tut')" class="tablinks" id="tutTab">Tut</li>
+					<li class="btn" onclick="changeTab('event', 'strats')" class="tablinks" id="stratsTab">Strats</li>
+					<li class="btn" onclick="changeTab('event', 'credits')" class="tablinks" id="creditsTab">Credits</li>
+				</ul>
+			</nav>
+		</div>
 
 
 		<div id="dims" class="tabcontent">

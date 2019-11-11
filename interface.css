@@ -10,6 +10,7 @@ body {
 
 .btn {
 	cursor: pointer;
+	/*background-color: #8BEAFF;*/
 }
 
 .make40OfViewPort {
@@ -31,7 +32,7 @@ body {
 }
 
 nav li {
-  display: block;	
+  display: block;
   background-color: #8BEAFF;
   border-radius: 5px;
   width: 140%;
@@ -48,6 +49,7 @@ it is not spescified on unused whitespace in margins or something*/
 	/*overflow: hidden;*/
 	/*white-space: nowrap;*/
 	background-color: #bde8ff;
+	/*background-color: #8beFF;*/
 	width: 50%;
 	border-radius: 5px;
 	text-align: center;
@@ -118,6 +120,7 @@ nav li {
 
 nav ul {
 	float: right;
+	clear: both;
 	list-style-type: none;
   margin: 0;
   margin-right: 30px;
@@ -129,4 +132,26 @@ button {
 	font-family: cursive;
 	/*background-color: #66eeff;*/
 	color: magenta;
+}
+
+.console {
+  /*margin: 0;*/
+  margin-right: 15px;
+  padding: 0;
+  width: 600px;
+}
+
+#fakeconsole {
+	float: right;
+  background: #ff0000;
+  width: 0px;
+}
+
+#realconsole {
+	position: absolute;
+	top: -5px;
+	right: 0px;
+	background: #bde8ff;
+  border-radius: 5px;
+  text-align: center;
 }

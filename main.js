@@ -2,9 +2,8 @@
 
 // TODO:
 // 1 Make upgrades 
-// 2 Make a way to talk to user
-// 3 Make working ascension
-// 4 Consider using bootstrap or something
+// 2 Make working ascension
+// 3 Consider using bootstrap or something
 
 // Acronym list:
 // Dim => dimension
@@ -42,6 +41,7 @@ const doc = {
 	'dim3Display': document.getElementById('dim3Display'),
 	'dim2DisplayP': document.getElementById('dim2DisplayP'),
 	'dim3DisplayP': document.getElementById('dim3DisplayP'),
+	'console': document.getElementById('realconsole'),
 }
 
 // p5 library boilerplate
@@ -125,7 +125,6 @@ window.setInterval(function() { // main game loop, executes 20 times a second, e
 
 	// try-catch statement because the user could have blocked cookies and localStorage
 	try {
-		// TODO: execute this functionn on page exit
 		// updates savegame in localStorage
 		localStorage.setItem("player", JSON.stringify(player));
 		// updates the time the player left
@@ -152,11 +151,6 @@ window.setInterval(function() { // main game loop, executes 20 times a second, e
 	ga('send', 'event', 'My Game', 'Save');
 }, 50);
 
-// TODO; add offline progression
-// function updateSave() {
-
-// };
-
 function load() {
 	let numSecsAway;
 	try {
@@ -174,7 +168,8 @@ function load() {
 			document.getElementById('dimsTab').click();
 		}
 	} catch (err) {
-		// TODO: Tell user to enable cookies
+		// console that talks to user in top right of screen
+		changeConsole('Please enable cookies');
 		console.log(err);
 	};
 
@@ -184,6 +179,8 @@ function load() {
 	doc.dim2Display.innerHTML = player.dim2;
 	doc.dim3Display.innerHTML = player.dim3;
 	dimUnlockedUpdate();
+
+	changeConsole();
 }
 
 
@@ -271,8 +268,12 @@ function clickedDim(dimIndex) {
 			player.dimNum++;
 		} else {
 			// TODO: Tell user that they need more money
+			changeConsole('You need $' + dimensionCost[dimIndex - 1] +
+				' to buy the ' +
+				getOrdinal(dimIndex) + ' dimension');
 		}
 	} else {
+		changeConsole('I dunno. Its a bug if you see this');
 		// TODO: Tell user that they can only unlock the dim before what they clicked
 	}
 	dimUnlockedUpdate();
@@ -286,6 +287,19 @@ function changeTab(evt, tab) {
 
 	document.getElementById(tab).style.display = 'block';
 	// evt.currentTarget.className += " active"; 
+}
+
+function changeConsole(text) {
+	// can talk to user
+	if (typeof text == 'string') {
+		doc.console.innerHTML = text;
+	}
+
+	if (doc.console.innerHTML == '') {
+		doc.console.style.display = 'none';
+	} else {
+		doc.console.style.display = 'block';
+	}
 }
 
 function cheat() {
