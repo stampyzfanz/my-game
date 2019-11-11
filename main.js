@@ -1,16 +1,12 @@
 "use strict";
 
 // TODO:
-// 0 Add offline progression - CURRENTLY WORKING ON
 // 1 Make upgrades 
 // 2 Make a way to talk to user
 // 3 Make working ascension
 // 4 Consider using bootstrap or something
-/*
-show cooords
-*/
 
-// Accronym list:
+// Acronym list:
 // Dim => dimension
 // DisplayP => DisplayPgraph
 
@@ -190,6 +186,30 @@ function load() {
 	dimUnlockedUpdate();
 }
 
+
+function offlineEarnings(earnings, time_away) {
+	if (time_away >= 2) {
+		console.log(time_away);
+
+		changeTab('event', 'offlineEarningsTab');
+
+		let formatted_time_away =
+			(new Date(time_away * 1000))
+			.toUTCString()
+			.match(/(\d\d:\d\d:\d\d)/)[0];
+		// copy pasta ^
+
+
+		document.getElementById('timeAwayDisplay')
+			// .innerHTML = time_away + ' seconds';
+			.innerHTML = formatted_time_away;
+		document.getElementById('amountEarnedDisplay')
+			.innerHTML = '$' + earnings;
+	} else {
+		document.getElementById('dimsTab').click();
+	}
+}
+
 function wipeSave() {
 	player = Object.create(defaults);
 	localStorage.removeItem("player");
@@ -270,29 +290,6 @@ function changeTab(evt, tab) {
 
 function cheat() {
 	player.money += 1e80;
-}
-
-function offlineEarnings(earnings, time_away) {
-	if (time_away >= 2) {
-		console.log(time_away);
-
-		changeTab('event', 'offlineEarningsTab');
-
-		let formatted_time_away =
-			(new Date(time_away * 1000))
-			.toUTCString()
-			.match(/(\d\d:\d\d:\d\d)/)[0];
-		// copy pasta ^
-
-
-		document.getElementById('timeAwayDisplay')
-			// .innerHTML = time_away + ' seconds';
-			.innerHTML = formatted_time_away;
-		document.getElementById('amountEarnedDisplay')
-			.innerHTML = '$' + earnings;
-	} else {
-		document.getElementById('dimsTab').click();
-	}
 }
 
 load();
